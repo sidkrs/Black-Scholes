@@ -49,7 +49,3 @@ The program will then:
 - `plot_time_change`: Shows how option values change with time to maturity
 - `plot_implied_volatility`: Plots the implied volatility smile/skew
 - `plot_compare_prices_with_maturities`: Compares Black-Scholes and market prices across different maturities
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
