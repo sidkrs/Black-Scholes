@@ -23,7 +23,7 @@ This project provides a comprehensive tool for comparing the Black-Scholes optio
 
 ## Installation
 
-1. Clone this repository: git clone https://github.com/yourusername/black-scholes-comparison.git
+1. Clone this repository: git clone https://github.com/sidkrs/black-scholes-comparison.git
 2. Install required packages: pip install -r requirements.txt
 
 ## Usage
