@@ -103,16 +103,22 @@ def get_market_option_price(ticker, days, strike):
 def get_vals(ticker):
     '''
     Parameters: ticker (str) - Ticker symbol of the stock
-    Returns: (float, float) - Current stock price and volatility (sigma)
-    Does: Retrieves the current stock price and calculates the volatility (sigma) based on one year of historical data.
+    Returns: (float, float) - Current stock price and annualized volatility (sigma)
+    Does: Retrieves the current stock price and calculates the annualized volatility (sigma) based on one year of historical data.
     '''
     
-    # Get the current stock price and calculate the volatility (sigma)
+    # Get the current stock price
     tick = yf.Ticker(ticker)
     current_price = tick.info['previousClose']
+    # Get historical data
     hist = tick.history(period='1y')
-    std_dev = hist['Close'].std()
-    sigma = std_dev / 100
+    # Compute daily log returns
+    hist['Log_Returns'] = np.log(hist['Close'] / hist['Close'].shift(1))
+    # Calculate the standard deviation of daily log returns
+    daily_volatility = hist['Log_Returns'].std()
+    # Annualize the volatility
+    sigma = daily_volatility * np.sqrt(252)  # Assuming 252 trading days in a year
+    
     return current_price, sigma
 
 def BS_CALL(S, K, T, r, sigma):
